@@ -1,8 +1,9 @@
-# KEYBIND MASTER - ShortcutInput Component
+# ShortcutInput Component
 
-A React component for capturing and validating keyboard shortcuts with a game UI style.
+A React component for capturing and validating keyboard shortcuts with a game-inspired UI style. This component provides an intuitive interface for users to set keyboard shortcuts in your React applications.
 
-![Keybind Master](https://i.imgur.com/placeholder.png)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue.svg)](https://github.com/neolite/shortcut-input)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
 
@@ -19,12 +20,20 @@ A React component for capturing and validating keyboard shortcuts with a game UI
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/shortcut-input.git
+git clone https://github.com/neolite/shortcut-input.git
 cd shortcut-input
 
 # Install dependencies
 npm install
 ```
+
+### Using in Your Project
+
+You can copy the `ShortcutInput` component into your own project:
+
+1. Copy the `src/components/ShortcutInput.tsx` file to your project
+2. Copy the `src/components/ShortcutInput.css` file to your project
+3. Import and use the component as shown in the [Usage](#usage) section
 
 ### Running the Development Server
 
@@ -172,3 +181,19 @@ The component's appearance can be customized by modifying the CSS variables in t
   --danger-color: #e74c3c;
 }
 ```
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/your-feature-name`)
+3. Make your changes
+4. Run tests to ensure they pass (`npm test`)
+5. Commit your changes (`git commit -m 'Add some feature'`)
+6. Push to the branch (`git push origin feature/your-feature-name`)
+7. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
