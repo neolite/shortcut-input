@@ -13,11 +13,51 @@ A React component for capturing and validating keyboard shortcuts with a game UI
 - Handles different states (empty, focus, in progress, valid)
 - Seamlessly integrates with form states
 
-## Installation
+## Getting Started
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/yourusername/shortcut-input.git
+cd shortcut-input
+
+# Install dependencies
 npm install
+```
+
+### Running the Development Server
+
+```bash
+# Start the development server
 npm run dev
+```
+
+This will start the development server at [http://localhost:5173](http://localhost:5173).
+
+### Building for Production
+
+```bash
+# Build the application
+npm run build
+
+# Preview the production build
+npm run preview
+```
+
+## Testing
+
+The component includes comprehensive tests to ensure it works as expected.
+
+```bash
+# Run tests once
+npm test
+
+# Run tests with detailed output
+npx vitest run --reporter=verbose
+
+# Run tests in watch mode
+npm run test:watch
 ```
 
 ## Usage
