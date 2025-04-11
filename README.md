@@ -77,6 +77,7 @@ function App() {
         onChange={(value) => setShortcut(value)}
       />
       <p>Current shortcut: {shortcut}</p>
+      {/* Example output: Control+Alt+L */}
     </div>
   );
 }
@@ -86,9 +87,9 @@ function App() {
 
 | Prop | Type | Description |
 |------|------|-------------|
-| `value` | string | Current shortcut value (e.g., 'Control+Shift+a'). Component integrates seamlessly with form states. |
+| `value` | string | Current shortcut value (e.g., 'Control+Shift+A'). Component integrates seamlessly with form states. |
 | `modifiers` | string[] | Array of modifier keys (e.g., ['Control', 'Alt', 'Shift', 'CapsLock', 'Meta']). |
-| `onChange` | function | Callback function that receives the valid shortcut string (e.g., 'Control+Shift+a'). |
+| `onChange` | function | Callback function that receives the valid shortcut string (e.g., 'Control+Shift+A'). |
 
 ## Validation Logic
 
@@ -98,14 +99,16 @@ A valid shortcut must contain:
 
 ### Valid Examples
 
-- 'Control+Shift+a'
-- 'Shift+a'
+- 'Control+Shift+A'
+- 'Shift+A'
+- 'Alt+F4'
+- 'Control+Alt+Delete'
 
 ### Invalid Examples
 
 - 'Control+Shift+CapsLock' (no non-modifier key)
 - 'Control+Shift' (no non-modifier key)
-- 'a' (no modifier key)
+- 'A' (no modifier key)
 
 ## Component States
 
@@ -131,6 +134,28 @@ A valid shortcut must contain:
 ### Reset Functionality
 - Reset button to clear current shortcut
 - Option to clear shortcut history
+
+## Recent Improvements
+
+### Key Encoding Fix
+
+The component now properly handles key encoding to ensure consistent display of keyboard shortcuts across different browsers and keyboard layouts:
+
+- Letter keys are displayed in uppercase (e.g., 'A' instead of 'a')
+- Special characters are properly normalized
+- Fixed issues with non-ASCII characters in some keyboard layouts
+
+### Enhanced Key Visualization
+
+- Improved the visual feedback for pressed keys
+- Fixed issues where keys appeared to remain pressed after releasing them
+- Better separation between active input and saved shortcuts
+
+### Improved State Management
+
+- More reliable state transitions between different component states
+- Better handling of focus and blur events
+- Improved validation logic for keyboard shortcuts
 
 ## Customization
 
