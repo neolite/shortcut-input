@@ -86,7 +86,7 @@ describe('ShortcutInput', () => {
     fireEvent.keyDown(container, { key: 'Control', code: 'ControlLeft' });
     fireEvent.keyDown(container, { key: 'a', code: 'KeyA' });
 
-    expect(handleChange).toHaveBeenCalledWith('Control+a');
+    expect(handleChange).toHaveBeenCalledWith('Control+A');
   });
 
   it('does not call onChange with invalid shortcut', () => {

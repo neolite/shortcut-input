@@ -100,23 +100,64 @@ const ShortcutInput: React.FC<ShortcutInputProps> = ({ value, modifiers, onChang
     return keys.join('+');
   };
 
+  // Get normalized key name from keyboard event
+  const getNormalizedKey = (e: KeyboardEvent): string => {
+    // For letter keys, use the uppercase letter from e.code (KeyA -> A, KeyB -> B, etc.)
+    if (e.code.startsWith('Key')) {
+      return e.code.replace('Key', '');
+    }
+
+    // For digit keys, use the digit from e.code (Digit1 -> 1, Digit2 -> 2, etc.)
+    if (e.code.startsWith('Digit')) {
+      return e.code.replace('Digit', '');
+    }
+
+    // For special keys, use their common names
+    switch (e.code) {
+      case 'Space': return 'Space';
+      case 'Backspace': return 'Backspace';
+      case 'Tab': return 'Tab';
+      case 'Enter': return 'Enter';
+      case 'Escape': return 'Escape';
+      case 'ArrowUp': return 'Up';
+      case 'ArrowDown': return 'Down';
+      case 'ArrowLeft': return 'Left';
+      case 'ArrowRight': return 'Right';
+      case 'Home': return 'Home';
+      case 'End': return 'End';
+      case 'PageUp': return 'PageUp';
+      case 'PageDown': return 'PageDown';
+      case 'Delete': return 'Delete';
+      case 'Insert': return 'Insert';
+    }
+
+    // For modifier keys, use their common names
+    if (e.key === 'Control' || e.key === 'Ctrl') return 'Control';
+    if (e.key === 'Alt') return 'Alt';
+    if (e.key === 'Shift') return 'Shift';
+    if (e.key === 'Meta' || e.key === 'Command') return 'Meta';
+    if (e.key === 'CapsLock') return 'CapsLock';
+
+    // For function keys (F1-F12)
+    if (e.code.startsWith('F') && !isNaN(parseInt(e.code.substring(1)))) {
+      return e.code;
+    }
+
+    // For other keys, try to use e.key if it's a single character, otherwise fall back to e.code
+    if (e.key && e.key.length === 1) {
+      return e.key.toUpperCase();
+    }
+
+    // Fall back to e.code if all else fails
+    return e.code;
+  };
+
   // Handle key down events
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     e.preventDefault();
 
-    // Get the key name
-    let key = e.key;
-
-    // Handle special keys
-    if (key === ' ') key = 'Space';
-    if (key === 'Control') key = 'Control';
-    if (key === 'Alt') key = 'Alt';
-    if (key === 'Shift') key = 'Shift';
-    if (key === 'Meta') key = 'Meta';
-    if (key === 'CapsLock') key = 'CapsLock';
-
-    // Normalize key names for consistency
-    if (e.code === 'Space') key = 'Space';
+    // Get normalized key name
+    const key = getNormalizedKey(e);
 
     // Update current keys
     setCurrentKeys(prevKeys => {
@@ -140,18 +181,8 @@ const ShortcutInput: React.FC<ShortcutInputProps> = ({ value, modifiers, onChang
 
   // Handle key up events
   const handleKeyUp = (e: KeyboardEvent<HTMLDivElement>) => {
-    let key = e.key;
-
-    // Handle special keys
-    if (key === ' ') key = 'Space';
-    if (key === 'Control') key = 'Control';
-    if (key === 'Alt') key = 'Alt';
-    if (key === 'Shift') key = 'Shift';
-    if (key === 'Meta') key = 'Meta';
-    if (key === 'CapsLock') key = 'CapsLock';
-
-    // Normalize key names for consistency
-    if (e.code === 'Space') key = 'Space';
+    // Get normalized key name using the same function as handleKeyDown
+    const key = getNormalizedKey(e);
 
     // Remove the released key from current keys
     setCurrentKeys(prevKeys => {
